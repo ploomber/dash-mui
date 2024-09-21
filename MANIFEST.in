@@ -1,0 +1,11 @@
+include dash_material_ui/dash_material_ui.min.js
+include dash_material_ui/dash_material_ui.min.js.map
+include dash_material_ui/async-*.js
+include dash_material_ui/async-*.js.map
+include dash_material_ui/*-shared.js
+include dash_material_ui/*-shared.js.map
+include dash_material_ui/metadata.json
+include dash_material_ui/package-info.json
+include README.md
+include LICENSE
+include package.json
