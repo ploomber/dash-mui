@@ -13,18 +13,18 @@ import Paper from '@mui/material/Paper';
  * It takes a property `data` which is an array of objects representing the table rows.
  */
 const MUITable = (props) => {
-    const { id, data, setProps } = props;
+    const { id, data, setProps, dense, stickyHeader } = props;
 
     // Extract column names from the first data item
     const columns = data.length > 0 ? Object.keys(data[0]) : [];
 
     return (
-        <TableContainer component={Paper} id={id}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableContainer component={Paper} id={id} sx={{ maxHeight: stickyHeader ? 440 : 'none' }}>
+            <Table sx={{ minWidth: 650 }} size={dense ? "small" : "medium"} aria-label={dense ? "dense table" : "simple table"} stickyHeader={stickyHeader}>
                 <TableHead>
                     <TableRow>
                         {columns.map((column, index) => (
-                            <TableCell key={index} align={index === 0 ? "left" : "right"}>
+                            <TableCell key={index} align={index === 0 ? "left" : "right"} style={{ minWidth: 170 }}>
                                 {column.toUpperCase()}
                             </TableCell>
                         ))}
@@ -35,6 +35,9 @@ const MUITable = (props) => {
                         <TableRow
                             key={rowIndex}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            hover
+                            role="checkbox"
+                            tabIndex={-1}
                         >
                             {columns.map((column, cellIndex) => (
                                 <TableCell
@@ -55,7 +58,9 @@ const MUITable = (props) => {
 }
 
 MUITable.defaultProps = {
-    data: []
+    data: [],
+    dense: false,
+    stickyHeader: false
 };
 
 MUITable.propTypes = {
@@ -69,6 +74,16 @@ MUITable.propTypes = {
      * It should be an array of objects, where each object represents a row.
      */
     data: PropTypes.arrayOf(PropTypes.object),
+
+    /**
+     * If true, the table will be rendered in a dense layout.
+     */
+    dense: PropTypes.bool,
+
+    /**
+     * If true, the table header will be sticky.
+     */
+    stickyHeader: PropTypes.bool,
 
     /**
      * Dash-assigned callback that should be called to report property changes

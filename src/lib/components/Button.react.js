@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button as MuiButton } from '@mui/material';
+import * as MuiIcons from '@mui/icons-material';
 
 /**
  * Button component using Material-UI.
@@ -13,6 +14,9 @@ const Button = ({ children, id, variant, color, size, disabled, fullWidth, href,
         if (setProps) setProps({ n_clicks: (n_clicks || 0) + 1 });
     };
 
+    const StartIcon = startIcon && MuiIcons[startIcon];
+    const EndIcon = endIcon && MuiIcons[endIcon];
+
     return (
         <MuiButton
             id={id}
@@ -22,8 +26,8 @@ const Button = ({ children, id, variant, color, size, disabled, fullWidth, href,
             disabled={disabled}
             fullWidth={fullWidth}
             href={href}
-            startIcon={startIcon}
-            endIcon={endIcon}
+            startIcon={StartIcon}
+            endIcon={EndIcon}
             onClick={handleClick}
             {...other}
         >
@@ -74,14 +78,14 @@ Button.propTypes = {
     href: PropTypes.string,
 
     /**
-     * Element placed before the children.
+     * Icon placed before the children. Should be a string matching an icon name from @mui/icons-material.
      */
-    startIcon: PropTypes.node,
+    startIcon: PropTypes.string,
 
     /**
-     * Element placed after the children.
+     * Icon placed after the children. Should be a string matching an icon name from @mui/icons-material.
      */
-    endIcon: PropTypes.node,
+    endIcon: PropTypes.string,
 
     /**
      * Dash-assigned callback that should be called to report property changes

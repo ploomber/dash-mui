@@ -1,0 +1,10 @@
+{
+    "id": "raspy-bonus-1925",
+    "type": "dash",
+    "labels": [],
+    "resources": {
+        "cpu": 0.5,
+        "ram": 1,
+        "gpu": 0
+    }
+}

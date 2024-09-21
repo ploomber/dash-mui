@@ -1,21 +1,29 @@
 /* eslint-disable import/prefer-default-export */
-import DashMaterialUI from './components/DashMaterialUI.react';
-import SecondComponent from './components/SecondComponent.react';
-import Calculator from './components/Calculator.react';
 import Table from './components/Table.react';
 import CheckBoxTable from './components/CheckBoxTable.react';
 import Card from './components/Card.react';
 import Button from './components/Button.react';
 import Accordion from './components/Accordion.react';
-import AutoLayout from './components/AutoLayout.react';
+import Item from './components/Item.react';
+import Grid from './components/Grid.react';
+import RadioGroup from './components/RadioGroup.react';
+import AppBar from './components/AppBar.react';
+import ButtonGroup from './components/ButtonGroup.react';
+import Form from './components/Form.react';
+import App from './components/App.react';
+import Slider from './components/Slider.react';
 export {
-    DashMaterialUI,
-    SecondComponent,
-    Calculator,
     Table,
     CheckBoxTable,
-    Button,
     Card,
+    Button,
     Accordion,
-    AutoLayout
+    Item,
+    Grid,
+    RadioGroup,
+    AppBar,
+    ButtonGroup,
+    Form,
+    App,
+    Slider,
 };

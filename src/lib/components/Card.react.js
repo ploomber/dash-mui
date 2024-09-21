@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -9,10 +8,10 @@ import Typography from '@mui/material/Typography';
 
 const CustomCard = ({
     id,
+    topic,
     title,
     subtitle,
-    mainContent,
-    secondaryContent,
+    content,
     buttonText,
     setProps,
     n_clicks,
@@ -26,24 +25,32 @@ const CustomCard = ({
     };
 
     return (
-        <Card sx={{ minWidth: 275 }} id={id} {...other}>
+        <Card id={id} {...other}>
             <CardContent>
-                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                    {title}
-                </Typography>
-                <Typography variant="h5" component="div">
+                {topic && (
+                    <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                        {topic}
+                    </Typography>
+                )}
+                {title && (
+                    <Typography variant="h5" component="div">
+                        {title}
+                    </Typography>
+                )}
+                <Typography sx={{ mb: 1.5 }} color="text.secondary">
                     {subtitle}
                 </Typography>
-                <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                    {mainContent}
-                </Typography>
-                <Typography variant="body2">
-                    {secondaryContent}
-                </Typography>
+                {content && (
+                    <Typography variant="body2">
+                        {content}
+                    </Typography>
+                )}
             </CardContent>
-            <CardActions>
-                <Button size="small" onClick={handleClick}>{buttonText}</Button>
-            </CardActions>
+            {buttonText && (
+                <CardActions>
+                    <Button size="small" onClick={handleClick}>{buttonText}</Button>
+                </CardActions>
+            )}
         </Card>
     );
 };
@@ -53,6 +60,11 @@ CustomCard.propTypes = {
      * The ID used to identify this component in Dash callbacks.
      */
     id: PropTypes.string.isRequired,
+
+    /**
+     * The topic of the card.
+     */
+    topic: PropTypes.string,
 
     /**
      * The title of the card.
@@ -65,14 +77,9 @@ CustomCard.propTypes = {
     subtitle: PropTypes.string,
 
     /**
-     * The main content of the card.
+     * The content of the card.
      */
-    mainContent: PropTypes.string,
-
-    /**
-     * The secondary content of the card.
-     */
-    secondaryContent: PropTypes.string,
+    content: PropTypes.string,
 
     /**
      * The text for the button.
@@ -92,11 +99,6 @@ CustomCard.propTypes = {
 };
 
 CustomCard.defaultProps = {
-    title: 'Word of the Day',
-    subtitle: 'benevolent',
-    mainContent: 'adjective',
-    secondaryContent: 'well meaning and kindly.\n"a benevolent smile"',
-    buttonText: 'Learn More',
     n_clicks: 0,
 };
 
