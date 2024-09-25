@@ -1,6 +1,7 @@
 import dash_material_ui as mui
 from dash import html
 import black
+import dash_react_syntax_highlighter
 
 
 def create_component_item(
@@ -34,8 +35,8 @@ def create_component_item(
         )
 
     children.append(
-        html.Div(
-            children=[html.Pre(html.Code(formatted_code, className="language-python"))]
+        dash_react_syntax_highlighter.DashReactSyntaxHighlighter(
+            code=formatted_code, language="python", styleName="okaidia"
         )
     )
 

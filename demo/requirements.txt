@@ -1,3 +1,4 @@
 black
 dash
 dash-mui-ploomber
+dash-react-syntax-highlighter

@@ -5,7 +5,6 @@ src/DashMaterialUI.jl
 dash_material_ui/*
 !dash_material_ui/__init__.py
 NAMESPACE
-
 *.min.*
 
 # Created by .ignore support plugin (hsz.mobi)
