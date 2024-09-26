@@ -1,4 +1,21 @@
-# Dash MUI
+<p align="center">
+    <h1 align="center"><b>Dash MUI</b></h1>
+	<p align="center">
+		Beautiful Dash apps without design skills.
+    <br />
+    <br />
+    <br />
+    <img width="100" height="100" src="https://avatars.githubusercontent.com/u/60114551?s=200&v=4" alt="Ploomber Logo">
+    <br />
+    <b>  Made by <a href="https://ploomber.io">Ploomber</a> with ❤️</b>
+    <br />
+    <br />
+    <i>Deploy your Dash application on <a href="https://ploomber.io">Ploomber.io</a> for free.</i>
+    <br />
+  </p>
+</p>
+<br/>
+
 
 Live demo: [dash-mui.ploomberapp.io](https://dash-mui.ploomberapp.io/)
 
