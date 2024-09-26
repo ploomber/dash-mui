@@ -17,6 +17,10 @@
 <br/>
 
 
+
+https://github.com/user-attachments/assets/15492ec4-a04f-4a76-96fa-50b707898a2e
+
+
 Live demo: [dash-mui.ploomberapp.io](https://dash-mui.ploomberapp.io/)
 
 ## Installation
