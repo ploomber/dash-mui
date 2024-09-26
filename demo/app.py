@@ -178,6 +178,25 @@ app.layout = mui.App(
                 "padding-right": "10px",
             },
         ),
+        html.Footer(
+            html.P(
+                [
+                    "Made with ❤️ by ",
+                    html.A("Ploomber", href="https://ploomber.io", target="_blank"),
+                ]
+            ),
+            style={
+                "text-align": "center",
+                "padding": "2px",
+                "border-top": "1px solid #e0e0e0",
+                "position": "fixed",
+                "bottom": "0",
+                "left": "0",
+                "right": "0",
+                "background-color": "white",
+                "z-index": "1000",
+            },
+        ),
     ],
 )
 
