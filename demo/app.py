@@ -176,6 +176,7 @@ app.layout = mui.App(
             style={
                 "padding-left": "10px",
                 "padding-right": "10px",
+                "padding-bottom": "60px",  # Add extra space at the bottom
             },
         ),
         html.Footer(

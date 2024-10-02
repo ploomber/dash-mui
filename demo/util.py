@@ -2,6 +2,9 @@ import dash_material_ui as mui
 from dash import html
 import black
 import dash_react_syntax_highlighter
+import dash
+
+dash._dash_renderer._set_react_version("18.2.0")
 
 
 def create_component_item(
@@ -12,7 +15,8 @@ def create_component_item(
     output_div=True,
 ):
     component = component_type(**component_props)
-    component_code = f"import dash_material_ui as mui\n\n"
+    component_code = f"import dash_material_ui as mui\nimport dash\n\n"
+    component_code += 'dash._dash_renderer._set_react_version("18.2.0")\n\n'
     component_code += f"mui.{component_type.__name__}(\n"
     component_code += "\n".join(
         f"    {k}={repr(v)}," for k, v in component_props.items()
