@@ -183,7 +183,11 @@ app.layout = mui.App(
             html.P(
                 [
                     "Made with ❤️ by ",
-                    html.A("Ploomber", href="https://ploomber.io", target="_blank"),
+                    html.A(
+                        "Ploomber",
+                        href="https://ploomber.io/?utm_source=dash-mui&utm_medium=demo",
+                        target="_blank",
+                    ),
                 ]
             ),
             style={
