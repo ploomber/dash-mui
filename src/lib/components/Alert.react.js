@@ -3,11 +3,6 @@ import PropTypes from 'prop-types';
 import { Alert as MuiAlert, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
-/**
- * Alert component using Material-UI.
- * It can be customized with various optional props to change its appearance and behavior.
- * The 'id' prop is required.
- */
 const Alert = ({
     id,
     severity,

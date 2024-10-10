@@ -1,5 +1,3 @@
-# pagination.py
-
 import dash
 from dash import html
 import dash_material_ui as mui
@@ -9,7 +7,6 @@ from util import create_component_item
 
 dash.register_page(__name__)
 
-# Define paginations
 paginations = [
     (
         "Default Pagination",
@@ -88,17 +85,15 @@ paginations = [
     ),
 ]
 
-# Create the layout using the paginations defined above
 layout = html.Div(
     mui.Grid(
-        spacing=2,  # Controls the spacing between the pagination components
+        spacing=2, 
         children=[
             create_component_item(title, mui.Pagination, props) for title, props in paginations
         ]
     )
 )
 
-# Create callbacks for each pagination to display its state
 for pagination_id in [pagination[1]["id"] for pagination in paginations]:
 
     @callback(

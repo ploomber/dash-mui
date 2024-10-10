@@ -1,5 +1,3 @@
-# alert.py
-
 import dash
 from dash import html
 import dash_material_ui as mui
@@ -9,7 +7,6 @@ from util import create_component_item
 
 dash.register_page(__name__)
 
-# Define alerts
 alerts = [
     (
         "Error Alert",
@@ -71,17 +68,16 @@ alerts = [
     ),
 ]
 
-# Create the layout using the alerts defined above, similar to the button layout
+
 layout = html.Div(
     mui.Grid(
-        spacing=2,  # Controls the space between items
+        spacing=2,
         children=[
             create_component_item(title, mui.Alert, props) for title, props in alerts
         ],
     )
 )
 
-# Create callbacks for each alert
 for alert_id in [alert[1]["id"] for alert in alerts]:
 
     @callback(

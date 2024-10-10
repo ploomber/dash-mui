@@ -9,7 +9,6 @@ from util import create_component_item
 
 dash.register_page(__name__)
 
-# Define menus with different configurations
 menus = [
     (
         "Simple Menu",
@@ -33,16 +32,14 @@ menus = [
     ),
 ]
 
-# Create the layout using the menus defined above
 layout = html.Div(
     mui.Grid(
-        spacing=2,  # Controls the spacing between the menus
+        spacing=2, 
         children=[
             create_component_item(title, mui.Menu, props) for title, props in menus
         ],
     )
 )
-# Create explicit callbacks for each menu
 
 @callback(
     Output("output-div-menu-1", "children"),

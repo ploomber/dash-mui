@@ -2,34 +2,29 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Menu as MuiMenu, MenuItem } from '@mui/material';
 
-/**
- * Menu component using Material-UI.
- * It includes a button that opens the menu when clicked.
- * The 'id' prop is required.
- */
 const Menu = ({
     id,
     buttonText,
     menuItems,
     onItemClick,
     setProps,
-    selectedIndex,  // This is passed in from Dash but should not directly control open/close
+    selectedIndex,  
     ...other
 }) => {
     const [anchorEl, setAnchorEl] = useState(null);
 
     const handleButtonClick = (event) => {
-        setAnchorEl(event.currentTarget);  // Set the anchor element to open the menu
+        setAnchorEl(event.currentTarget); 
     };
 
     const handleClose = () => {
-        setAnchorEl(null);  // Close the menu
+        setAnchorEl(null); 
     };
 
     const handleMenuItemClick = (event, index) => {
-        if (onItemClick) onItemClick(event, index);  // Trigger callback on item click
-        if (setProps) setProps({ selectedIndex: index });  // Update Dash's selected index state
-        handleClose();  // Close the menu after an item is selected
+        if (onItemClick) onItemClick(event, index); 
+        if (setProps) setProps({ selectedIndex: index }); 
+        handleClose();  
     };
 
     return (
@@ -44,19 +39,19 @@ const Menu = ({
             </Button>
             <MuiMenu
                 id={id}
-                anchorEl={anchorEl}  // Control open/close state purely through React's anchorEl
-                open={Boolean(anchorEl)}  // Menu is open when anchorEl is not null
+                anchorEl={anchorEl} 
+                open={Boolean(anchorEl)} 
                 onClose={handleClose}
-                disablePortal  // This ensures the menu is rendered within the same DOM tree
+                disablePortal  
                 {...other}
             >
                 {menuItems.map((item, index) => (
                     <MenuItem
                         key={index}
                         onClick={(event) => handleMenuItemClick(event, index)}
-                        disabled={item.disabled || false}  // Handle disabled state if the item is an object
+                        disabled={item.disabled || false} 
                     >
-                        {typeof item === 'object' ? item.label : item}  {/* Handle either string or object */}
+                        {typeof item === 'object' ? item.label : item} 
                     </MenuItem>
                 ))}
             </MuiMenu>

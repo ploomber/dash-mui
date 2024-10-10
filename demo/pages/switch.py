@@ -6,7 +6,6 @@ from util import create_component_item
 
 dash.register_page(__name__)
 
-# Define switches grouped into sections
 switch_sections = [
     (
         "Basic Switches",
@@ -111,13 +110,10 @@ switch_sections = [
     ),
 ]
 
-# Create the layout using the switches defined above
 layout_children = []
 
 for section_title, switches in switch_sections:
-    # Add a section heading
     layout_children.append(html.H3(section_title))
-    # Create a grid of switches in this section
     layout_children.append(
         mui.Grid(
             [create_component_item(title, mui.Switch, props) for title, props in switches]
@@ -126,10 +122,8 @@ for section_title, switches in switch_sections:
 
 layout = html.Div(layout_children)
 
-# Collect all switch IDs
 switch_ids = [props["id"] for _, switches in switch_sections for _, props in switches]
 
-# Create callbacks for each switch to display its state
 for switch_id in switch_ids:
 
     @callback(
