@@ -13,24 +13,23 @@ const Menu = ({
     menuItems,
     onItemClick,
     setProps,
+    selectedIndex,  // This is passed in from Dash but should not directly control open/close
     ...other
 }) => {
     const [anchorEl, setAnchorEl] = useState(null);
 
     const handleButtonClick = (event) => {
-        setAnchorEl(event.currentTarget);
-        if (setProps) setProps({ open: true });
+        setAnchorEl(event.currentTarget);  // Set the anchor element to open the menu
     };
 
     const handleClose = () => {
-        setAnchorEl(null);
-        if (setProps) setProps({ open: false });
+        setAnchorEl(null);  // Close the menu
     };
 
     const handleMenuItemClick = (event, index) => {
-        if (onItemClick) onItemClick(event, index);
-        if (setProps) setProps({ selectedIndex: index });
-        handleClose();
+        if (onItemClick) onItemClick(event, index);  // Trigger callback on item click
+        if (setProps) setProps({ selectedIndex: index });  // Update Dash's selected index state
+        handleClose();  // Close the menu after an item is selected
     };
 
     return (
@@ -45,9 +44,10 @@ const Menu = ({
             </Button>
             <MuiMenu
                 id={id}
-                anchorEl={anchorEl}
-                open={Boolean(anchorEl)}
+                anchorEl={anchorEl}  // Control open/close state purely through React's anchorEl
+                open={Boolean(anchorEl)}  // Menu is open when anchorEl is not null
                 onClose={handleClose}
+                disablePortal  // This ensures the menu is rendered within the same DOM tree
                 {...other}
             >
                 {menuItems.map((item, index) => (

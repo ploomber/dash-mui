@@ -42,27 +42,36 @@ layout = html.Div(
         ],
     )
 )
+# Create explicit callbacks for each menu
 
-# Create callbacks for each menu to display the selected item
-for menu_id in [props["id"] for _, props in menus]:
-
-    @callback(
-        Output(f"output-div-{menu_id}", "children"),
-        Input(menu_id, "selectedIndex"),
-    )
-    def display_selected_item(selectedIndex, menu_id=menu_id):
-        if selectedIndex is None:
-            return "No item selected"
+@callback(
+    Output("output-div-menu-1", "children"),
+    Input("menu-1", "selectedIndex"),
+)
+def display_selected_item_1(selectedIndex):
+    if selectedIndex is None:
+        return "No item selected"
+    else:
+        menu_items = menus[0][1]["menuItems"]
+        if isinstance(menu_items[selectedIndex], dict):
+            selected_item = menu_items[selectedIndex].get("label", "Divider")
         else:
-            # Retrieve the menu items from the menus
-            menu_items = next(
-                props["menuItems"]
-                for title, props in menus
-                if props["id"] == menu_id
-            )
-            # For basic menus, menu_items can be a list of strings or dicts
-            if isinstance(menu_items[selectedIndex], dict):
-                selected_item = menu_items[selectedIndex].get("label", "Divider")
-            else:
-                selected_item = menu_items[selectedIndex]
-            return f"Selected item: {selected_item}"
+            selected_item = menu_items[selectedIndex]
+        return f"Selected item: {selected_item}"
+
+
+@callback(
+    Output("output-div-menu-2", "children"),
+    Input("menu-2", "selectedIndex"),
+)
+def display_selected_item_2(selectedIndex):
+    if selectedIndex is None:
+        return "No item selected"
+    else:
+        menu_items = menus[1][1]["menuItems"]
+        if isinstance(menu_items[selectedIndex], dict):
+            selected_item = menu_items[selectedIndex].get("label", "Divider")
+        else:
+            selected_item = menu_items[selectedIndex]
+        return f"Selected item: {selected_item}"
+
