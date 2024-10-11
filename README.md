@@ -68,6 +68,8 @@ You can see the releases [here](https://pypi.org/project/dash-mui-ploomber/#hist
 First, edit `version` in `package.json`, also edit `demo/requirements.txt` to ensure the demo uses the latest version.
 
 ```sh
+conda activate dash-mui
+
 # generate deployment artifact
 npm run build
 python setup.py sdist bdist_wheel
