@@ -2,7 +2,7 @@
 name = "DashMaterialUi"
 uuid = "1b08a953-4be3-4667-9a23-9f1c9461a4c7"
 authors = ["Ploomber Inc <contact@ploomber.io>"]
-version = "0.0.1"
+version = "0.0.2"
 
 [deps]
 Dash = "1b08a953-4be3-4667-9a23-3db579824955"

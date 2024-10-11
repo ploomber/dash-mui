@@ -72,6 +72,7 @@ conda activate dash-mui
 
 # generate deployment artifact
 npm run build
+rm -rf dist
 python setup.py sdist bdist_wheel
 ls dist
 
@@ -91,5 +92,7 @@ Deploy demo:
 
 ```sh
 cd demo
+
+pip install ploomber-cloud
 ploomber-cloud deploy
 ```
