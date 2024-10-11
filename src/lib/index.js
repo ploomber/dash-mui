@@ -12,6 +12,10 @@ import ButtonGroup from './components/ButtonGroup.react';
 import Form from './components/Form.react';
 import App from './components/App.react';
 import Slider from './components/Slider.react';
+import Switch from './components/Switch.react';
+import Alert from './components/Alert.react';
+import Pagination from './components/Pagination.react';
+import Menu from './components/Menu.react';
 export {
     Table,
     CheckBoxTable,
@@ -26,4 +30,8 @@ export {
     Form,
     App,
     Slider,
+    Switch,
+    Alert,
+    Pagination,
+    Menu,
 };
