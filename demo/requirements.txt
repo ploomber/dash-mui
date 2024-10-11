@@ -1,4 +1,4 @@
 black
 dash
-dash-mui-ploomber
+dash-mui-ploomber>=0.0.2
 dash-react-syntax-highlighter>=0.0.2

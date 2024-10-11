@@ -63,6 +63,10 @@ python demo/app.py
 
 ## Release
 
+You can see the releases [here](https://pypi.org/project/dash-mui-ploomber/#history)
+
+First, edit `version` in `package.json`, also edit `demo/requirements.txt` to ensure the demo uses the latest version.
+
 ```sh
 # generate deployment artifact
 npm run build
@@ -79,4 +83,11 @@ twine upload dist/*
 
 # clean up
 rm -rf dist
+```
+
+Deploy demo:
+
+```sh
+cd demo
+ploomber-cloud deploy
 ```
