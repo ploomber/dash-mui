@@ -29,7 +29,7 @@ Live demo: [dash-mui.ploomberapp.io](https://dash-mui.ploomberapp.io/)
 pip install dash-mui-ploomber
 ```
 
-## Run demo locally
+## Demo
 
 ```sh
 cd demo
@@ -40,34 +40,36 @@ python app.py
 Open: http://localhost:8050
 
 
-## Documentation
-
+## Developer documentation
 
 ## Setup
 
 ```sh
+# create env
+conda create --name dash-mui python=3.12 nodejs=22 -c conda-forge -y
+conda activate dash-mui
+
+# run this in the dash-mui directory, where the setup.py file is
+pip install -e .
+pip install -r requirements.txt -r tests/requirements.txt
+
 npm install
-pip install -r requirements.txt
-pip install -r tests/requirements.txt
-```
-
-## Development
-
-```sh
 npm run build
-python demo.py
-```
 
+# you can test changes using the demo
+pip install -r demo/requirements.txt
+python demo/app.py
+```
 
 ## Release
 
 ```sh
-# generate
+# generate deployment artifact
 npm run build
 python setup.py sdist bdist_wheel
 ls dist
 
-# test artifact
+# test deployment artifact by installing it in a new env
 pip install dash dist/dash_mui_ploomber-0.0.1.tar.gz
 python demo/app.py
 
