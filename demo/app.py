@@ -24,13 +24,12 @@ sidebar = html.Div(
         "top": "0", 
         "bottom": "0", 
         "left": "0", 
-        "box-shadow": "2px 0 5px rgba(0, 0, 0, 0.1)",
         "overflow": "auto"  
     },
     children=[
-        html.H2("Dash Material UI", style={"text-align": "center", "padding": "10px", "color": "white"}),
+        html.H2("Dash Material UI", style={"text-align": "center", "padding": "10px", "color": "white", "font-family": "Roboto, Helvetica, Arial, sans-serif"}),
         html.Ul(
-            style={"list-style-type": "none", "padding-left": "0"},
+            style={"list-style-type": "none", "padding-left": "0", "font-family": "Roboto, Helvetica, Arial, sans-serif"},
             children=[
                 html.Li(
                     html.A("Home", href="/", style={"padding": "10px 0", "text-decoration": "none",  "color": "white",  "font-size": "18px"}),
@@ -204,6 +203,7 @@ app.layout = html.Div(
                 "margin-left": "260px",
                 "padding": "20px",
                 "padding-left": "30px",
+                "font-family": "Roboto, Helvetica, Arial, sans-serif",
             },
         ),
         html.Footer(
