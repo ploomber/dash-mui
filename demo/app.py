@@ -203,6 +203,7 @@ app.layout = html.Div(
                 "margin-left": "260px",
                 "padding": "20px",
                 "padding-left": "30px",
+                "padding-bottom": "70px",
                 "font-family": "Roboto, Helvetica, Arial, sans-serif",
             },
         ),
