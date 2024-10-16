@@ -10,6 +10,18 @@ from util import create_component_item
 
 dash.register_page(__name__)
 
+def callback_function(id):
+    return f"""
+@callback(
+    Output(f"output-div-{id}", "children"),
+    Input(button_group_id, "lastClicked"),
+)
+def display_output(last_clicked, button_group_id="{id}"):
+    if last_clicked is None:
+        return "No button clicked yet."
+    return f"Last clicked button in {id}: {{last_clicked}}"
+"""
+
 button_groups = [
     (
         "Button Group",
@@ -87,7 +99,7 @@ button_groups = [
 layout = html.Div(
     mui.Grid(
         [
-            create_component_item(title, mui.ButtonGroup, props, size=6)
+            create_component_item(title, mui.ButtonGroup, props, size=6, callback_function=callback_function)
             for title, props in button_groups
         ]
     )

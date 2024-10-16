@@ -9,6 +9,20 @@ from util import create_component_item
 
 dash.register_page(__name__)
 
+def callback_function(id):
+    if id == "form-2":
+        return f"""
+@callback(
+    Output("output-div-{id}", "children"),
+    Input("{id}", "values"),
+)
+def update_output_form2(values):
+    if values is None:
+        return "Form has not been submitted yet"
+    return f"Form values: {{values}}"     
+"""
+    return ""
+
 forms = [
     (
         "Basic Form",
@@ -75,7 +89,7 @@ forms = [
 layout = html.Div(
     mui.Grid(
         [
-            create_component_item(title, mui.Form, props, size=12)
+            create_component_item(title, mui.Form, props, size=12, callback_function=callback_function)
             for title, props in forms
         ]
     )
@@ -100,3 +114,4 @@ def update_output_form2(values):
     if values is None:
         return "Form has not been submitted yet"
     return f"Form values: {values}"
+

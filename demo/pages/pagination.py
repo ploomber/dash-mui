@@ -7,6 +7,18 @@ from util import create_component_item
 
 dash.register_page(__name__)
 
+def callback_function(id):
+    return f"""
+@callback(
+    Output(f"output-div-{id}", "children"),
+    Input("{id}", "page"),
+)
+def display_output(page, pagination_id="{id}"):
+    if page is None:
+        return "Pagination state is unknown"
+    return f"{id} is on page {{page}}"    
+"""
+
 paginations = [
     (
         "Default Pagination",
@@ -89,7 +101,7 @@ layout = html.Div(
     mui.Grid(
         spacing=2, 
         children=[
-            create_component_item(title, mui.Pagination, props) for title, props in paginations
+            create_component_item(title, mui.Pagination, props, callback_function=callback_function) for title, props in paginations
         ]
     )
 )

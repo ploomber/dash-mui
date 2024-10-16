@@ -6,24 +6,27 @@ import dash
 
 dash._dash_renderer._set_react_version("18.2.0")
 
-
 def create_component_item(
     title,
     component_type,
     component_props,
     size=4,
     output_div=True,
+    callback_function=None,
 ):
     component = component_type(**component_props)
-    component_code = f"import dash_material_ui as mui\nimport dash\n\n"
+    component_code = f"import dash_material_ui as mui\nimport dash\nfrom dash import html, Input, Output, callback\n\n"
     component_code += 'dash._dash_renderer._set_react_version("18.2.0")\n\n'
-    component_code += f"mui.{component_type.__name__}(\n"
-    component_code += "\n".join(
-        f"    {k}={repr(v)}," for k, v in component_props.items()
+    component_code += f"app.layout = html.Div([\n    mui.{component_type.__name__}(\n"
+    component_code += ",\n".join(
+        f"        {k}={repr(v)}" for k, v in component_props.items()
     )
-    component_code += "\n)"
+    component_code += f"\n    ),\n    html.Div(id='output-div-{component_props['id']}')\n])"
 
-    # Format the code using black
+    if callback_function:
+        callback_code = callback_function(component_props["id"])
+        component_code += f"\n\n{callback_code}"
+
     formatted_code = black.format_str(component_code, mode=black.Mode(line_length=88))
 
     children = [

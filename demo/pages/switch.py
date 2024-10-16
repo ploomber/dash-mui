@@ -6,6 +6,18 @@ from util import create_component_item
 
 dash.register_page(__name__)
 
+def callback_function(id):
+    return f"""
+@callback(
+    Output(f"output-div-{id}", "children"),
+    Input("{id}", "checked"),
+)
+def display_output(checked, switch_id="{id}"):
+    if checked is None:
+        return "Switch state is unknown"
+    return "{id} is " + ('ON' if checked else 'OFF')
+"""
+
 switch_sections = [
     (
         "Basic Switches",
@@ -116,7 +128,7 @@ for section_title, switches in switch_sections:
     layout_children.append(html.H3(section_title))
     layout_children.append(
         mui.Grid(
-            [create_component_item(title, mui.Switch, props) for title, props in switches]
+            [create_component_item(title, mui.Switch, props, callback_function=callback_function) for title, props in switches]
         )
     )
 
