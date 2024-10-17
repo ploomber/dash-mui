@@ -9,18 +9,6 @@ from util import create_component_item
 
 dash.register_page(__name__)
 
-def callback_function(id):
-    return f"""
-@callback(
-    Output(f"output-div-{id}", "children"),
-    Input("{id}", "value"),
-)
-def display_output(value, radio_group_id=radio_group_id):
-    if value is None:
-        return "No option selected"
-    return f"You selected: {{value}}"    
-"""
-
 radio_groups = [
     (
         "Basic Radio Group (Column)",
@@ -68,7 +56,7 @@ radio_groups = [
 layout = html.Div(
     mui.Grid(
         [
-            create_component_item(title, mui.RadioGroup, props, size=6, callback_function=callback_function)
+            create_component_item(title, mui.RadioGroup, props, size=6, event_name="Option", event_value="value")
             for title, props in radio_groups
         ]
     )

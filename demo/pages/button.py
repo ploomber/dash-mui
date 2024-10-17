@@ -10,18 +10,6 @@ from util import create_component_item
 
 dash.register_page(__name__)
 
-def callback_function(id):
-    return f"""
-@app.callback(
-    Output("output-div-{id}", "children"),
-    Input("{id}", "n_clicks"),
-)
-def update_output(n_clicks):
-    if n_clicks is None or n_clicks == 0:
-        return "Button has not been clicked yet"
-    return f"Button clicked {{n_clicks}} times"
-"""
-
 buttons = [
     (
         "Text Button",
@@ -87,7 +75,7 @@ buttons = [
 
 layout = html.Div(
     mui.Grid(
-        [create_component_item(title, mui.Button, props, callback_function=callback_function) for title, props in buttons]
+        [create_component_item(title, mui.Button, props, event_name="Total Clicks", event_value="n_clicks") for title, props in buttons]
     )
 )
 

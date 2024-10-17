@@ -7,19 +7,6 @@ from util import create_component_item
 
 dash.register_page(__name__)
 
-def callback_function(id):
-    return f"""
-@callback(
-    Output("output-div-{id}", "children"),
-    Input("{id}", "severity"),
-)
-def display_alert(severity):
-    if severity is None:
-        return "{id} has no severity"
-    return "{id} has a severity of {{severity}}"
-"""
-
-
 alerts = [
     (
         "Error Alert",
@@ -86,18 +73,7 @@ layout = html.Div(
     mui.Grid(
         spacing=2,
         children=[
-            create_component_item(title, mui.Alert, props, callback_function=callback_function) for title, props in alerts
+            create_component_item(title, mui.Alert, props) for title, props in alerts
         ],
     )
 )
-
-for alert_id in [alert[1]["id"] for alert in alerts]:
-
-    @callback(
-        Output(f"output-div-{alert_id}", "children"),
-        Input(alert_id, "severity"),
-    )
-    def display_alert(severity, alert_id=alert_id):
-        if severity is None:
-            return f"{alert_id} has no severity"
-        return f"{alert_id} has a severity of {severity}"

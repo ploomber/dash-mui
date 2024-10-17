@@ -10,21 +10,6 @@ from util import create_component_item
 
 dash.register_page(__name__)
 
-def callback_function(id):
-    if id == "card-4":
-        return f"""
-@callback(
-    Output("output-div-{id}", "children"),
-    Input("{id}", "n_clicks"),
-    State("{id}", "content"),
-)
-def print_card_content(n_clicks, content):
-    if n_clicks is None or n_clicks == 0:
-        return "Button not clicked yet"
-    return f"You clicked the button and the content is: {{content}}"        
-"""
-    return ""
-
 cards = [
     (
         "Basic Card with Title and Content",
@@ -60,7 +45,7 @@ cards = [
 layout = html.Div(
     [
         mui.Grid(
-            [create_component_item(title, mui.Card, props, callback_function=callback_function) for title, props in cards]
+            [create_component_item(title, mui.Card, props, event_name="n_clicks" if props["id"] == "card-4" else None, event_value="content" if props["id"] == "card-4" else None) for title, props in cards]
         ),
         html.Div(id="output-div", style={"margin-top": "20px"}),
     ]

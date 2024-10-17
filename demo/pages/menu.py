@@ -56,7 +56,7 @@ layout = html.Div(
     mui.Grid(
         spacing=2, 
         children=[
-            create_component_item(title, mui.Menu, props, callback_function=callback_function) for title, props in menus
+            create_component_item(title, mui.Menu, props, event_name="Selected Menu" if props["id"] == "menu-2" else None, event_value="selectedIndex" if props["id"] == "menu-2" else None) for title, props in menus
         ],
     )
 )

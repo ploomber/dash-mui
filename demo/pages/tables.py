@@ -9,20 +9,6 @@ from util import create_component_item
 
 dash.register_page(__name__)
 
-def callback_function(id):
-    if id == "checkbox-table":
-        return f"""
-@app.callback(
-    Output("output-div-{id}", "children"),
-    Input("{id}", "selected"),
-)
-def display_output(selected_rows):
-    if selected_rows is None:
-        return "No rows selected."
-    return f"Selected rows: {{selected_rows}}"
-"""
-    return ""
-
 population_data = [
     {"country": "India", "code": "IN", "population": 1324171354, "area": 3287263},
     {"country": "China", "code": "CN", "population": 1403500365, "area": 9596961},
@@ -114,6 +100,8 @@ layout = html.Div(
                     else mui.CheckBoxTable
                 ),
                 props,
+                event_name="Selected",
+                event_value="rows",
                 size=6,
                 output_div=("Table with checkboxes" == title),
             )

@@ -9,16 +9,6 @@ from util import create_component_item
 
 dash.register_page(__name__)
 
-def callback_function(id):
-    return f"""
-@callback(
-    Output(f"output-div-{id}", "children"),
-    Input("{id}", "value"),
-)
-def display_output(value, slider_id="{id}"):
-    return f"Selected value: {{value}}"    
-"""
-
 sliders = [
     (
         "Default Slider",
@@ -50,7 +40,7 @@ sliders = [
 layout = html.Div(
     mui.Grid(
         [
-            create_component_item(title, mui.Slider, props, size=6)
+            create_component_item(title, mui.Slider, props, size=6, event_name="Slider", event_value="value")
             for title, props in sliders
         ]
     )
