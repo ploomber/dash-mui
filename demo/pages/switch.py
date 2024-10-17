@@ -116,7 +116,7 @@ for section_title, switches in switch_sections:
     layout_children.append(html.H3(section_title))
     layout_children.append(
         mui.Grid(
-            [create_component_item(title, mui.Switch, props) for title, props in switches]
+            [create_component_item(title, mui.Switch, props, event_name="Switch", event_value="checked") for title, props in switches]
         )
     )
 
@@ -132,5 +132,5 @@ for switch_id in switch_ids:
     )
     def display_output(checked, switch_id=switch_id):
         if checked is None:
-            return "Switch state is unknown"
+            return "Switch has not been interacted with yet"
         return f"{switch_id} is {'ON' if checked else 'OFF'}"

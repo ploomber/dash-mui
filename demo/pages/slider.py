@@ -40,7 +40,7 @@ sliders = [
 layout = html.Div(
     mui.Grid(
         [
-            create_component_item(title, mui.Slider, props, size=6)
+            create_component_item(title, mui.Slider, props, size=6, event_name="Slider", event_value="value")
             for title, props in sliders
         ]
     )

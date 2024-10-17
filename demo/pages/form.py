@@ -75,7 +75,7 @@ forms = [
 layout = html.Div(
     mui.Grid(
         [
-            create_component_item(title, mui.Form, props, size=12)
+            create_component_item(title, mui.Form, props, size=12, event_name="Form", event_value="values")
             for title, props in forms
         ]
     )
@@ -100,3 +100,4 @@ def update_output_form2(values):
     if values is None:
         return "Form has not been submitted yet"
     return f"Form values: {values}"
+

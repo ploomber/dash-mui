@@ -87,7 +87,7 @@ button_groups = [
 layout = html.Div(
     mui.Grid(
         [
-            create_component_item(title, mui.ButtonGroup, props, size=6)
+            create_component_item(title, mui.ButtonGroup, props, size=6, event_name="Last Clicked", event_value="last_clicked")
             for title, props in button_groups
         ]
     )
