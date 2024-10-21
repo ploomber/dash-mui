@@ -45,7 +45,7 @@ cards = [
 layout = html.Div(
     [
         mui.Grid(
-            [create_component_item(title, mui.Card, props, event_name="n_clicks" if props["id"] == "card-4" else None, event_value="content" if props["id"] == "card-4" else None) for title, props in cards]
+            [create_component_item(title, mui.Card, props, event_value="n_clicks" if props["id"] == "card-4" else None, event_name="Card" if props["id"] == "card-4" else None, event_state="content" if props["id"] == "card-4" else None) for title, props in cards]
         ),
         html.Div(id="output-div", style={"margin-top": "20px"}),
     ]
