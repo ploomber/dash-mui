@@ -25,13 +25,8 @@ layout = html.Div(
                 for elevation in [0, 1, 2, 3, 4, 6, 8, 12, 16, 24]
             ]
         ),
+
+        html.Div(id="output-div-paper", style={"marginTop": "20px"})
     ]
 )
 
-
-@callback(
-    Output("output-div-paper", "children"),
-    Input("paper-1", "elevation")
-)
-def display_paper_elevation(elevation):
-    return f"Paper elevation is now: {elevation}"
