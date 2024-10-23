@@ -10,6 +10,7 @@ dash.register_page(__name__)
 layout = html.Div(
     [
         mui.Grid(
+            
             [
                 create_component_item(
                     f"Paper Elevation {elevation}",
