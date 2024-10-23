@@ -89,7 +89,7 @@ layout = html.Div(
     mui.Grid(
         spacing=2, 
         children=[
-            create_component_item(title, mui.Pagination, props) for title, props in paginations
+            create_component_item(title, mui.Pagination, props, event_name="Current page", event_value="page") for title, props in paginations
         ]
     )
 )

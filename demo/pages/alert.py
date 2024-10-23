@@ -77,14 +77,3 @@ layout = html.Div(
         ],
     )
 )
-
-for alert_id in [alert[1]["id"] for alert in alerts]:
-
-    @callback(
-        Output(f"output-div-{alert_id}", "children"),
-        Input(alert_id, "severity"),
-    )
-    def display_alert(severity, alert_id=alert_id):
-        if severity is None:
-            return f"{alert_id} has no severity"
-        return f"{alert_id} has a severity of {severity}"

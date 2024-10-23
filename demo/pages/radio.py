@@ -56,7 +56,7 @@ radio_groups = [
 layout = html.Div(
     mui.Grid(
         [
-            create_component_item(title, mui.RadioGroup, props, size=6)
+            create_component_item(title, mui.RadioGroup, props, size=6, event_name="Option", event_value="value")
             for title, props in radio_groups
         ]
     )

@@ -1,29 +1,69 @@
 import dash_material_ui as mui
-from dash import html
+import dash
+from dash import html, Input, Output, callback
 import black
 import dash_react_syntax_highlighter
-import dash
+
 
 dash._dash_renderer._set_react_version("18.2.0")
 
+def generate_callback(id, event_name, event_value, event_state):
+    if event_name == "Switch":
+        return f"""
+@callback(
+    Output(f"output-div-{id}", "children"),
+    Input("{id}", "{event_value}")
+)
+def display_output({event_value}, id="{id}"):
+    if {event_value} is None:
+        return f"{id} has not been interacted with yet"
+    return f"{event_name} is {{'ON' if {event_value} else 'OFF'}}"
+"""
+    elif event_name == "Card":
+        return f"""
+@callback(
+    Output(f"output-div-{id}", "children"),
+    Input("{id}", "{event_value}"),
+    State("{id}", "{event_state}"),
+)
+def display_output({event_value}, {event_state}, id="{id}"):
+    if {event_value} is None:
+        return f"{id} has not been interacted with yet"
+    return f"You clicked the button and the content is: {{{event_state}}}"      
+"""
+    return f"""
+@callback(
+    Output(f"output-div-{id}", "children"),
+    Input("{id}", "{event_value}")
+)
+def display_output({event_value}, id="{id}"):
+    if {event_value} is None:
+        return f"{id} has not been interacted with yet"
+    return f"{event_name} value is: {{{event_value}}}"
+"""
 
 def create_component_item(
     title,
     component_type,
     component_props,
+    event_name=None,
+    event_value=None,
     size=4,
     output_div=True,
+    event_state=None
 ):
     component = component_type(**component_props)
-    component_code = f"import dash_material_ui as mui\nimport dash\n\n"
-    component_code += 'dash._dash_renderer._set_react_version("18.2.0")\n\n'
-    component_code += f"mui.{component_type.__name__}(\n"
-    component_code += "\n".join(
-        f"    {k}={repr(v)}," for k, v in component_props.items()
-    )
-    component_code += "\n)"
 
-    # Format the code using black
+    component_code = f"import dash_material_ui as mui\nimport dash\nfrom dash import html, Input, Output, callback\n\n"
+    component_code += 'dash._dash_renderer._set_react_version("18.2.0")\n\n'
+    component_code += f"app.layout = html.Div([\n    mui.{component_type.__name__}(\n"
+    component_code += ",\n".join(
+        f"        {k}={repr(v)}" for k, v in component_props.items()
+    )
+    component_code += f"\n    ),\n    html.Div(id='output-div-{component_props['id']}')\n])"
+
+    if event_name:
+        component_code += f"\n\n{generate_callback(component_props["id"], event_name, event_value, event_state)}"
     formatted_code = black.format_str(component_code, mode=black.Mode(line_length=88))
 
     children = [

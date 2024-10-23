@@ -100,6 +100,8 @@ layout = html.Div(
                     else mui.CheckBoxTable
                 ),
                 props,
+                event_name="Selected",
+                event_value="rows",
                 size=6,
                 output_div=("Table with checkboxes" == title),
             )

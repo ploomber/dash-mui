@@ -75,7 +75,7 @@ buttons = [
 
 layout = html.Div(
     mui.Grid(
-        [create_component_item(title, mui.Button, props) for title, props in buttons]
+        [create_component_item(title, mui.Button, props, event_name="Total Clicks", event_value="n_clicks") for title, props in buttons]
     )
 )
 
