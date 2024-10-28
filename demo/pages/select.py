@@ -44,8 +44,7 @@ selects = [
             "label": "Choose an option",
             "value": "",
             "options": select_options,
-            "error": True,
-            "helperText": "An error occurred",
+            "helperText": "Select option 2 to pass validation",
         },
     ),
     (
@@ -78,14 +77,26 @@ layout = html.Div(
     )
 )
 
-# Callback for all selects
 for select_id in [select[1]["id"] for select in selects]:
-
-    @callback(
-        Output(f"output-div-{select_id}", "children"),
-        Input(select_id, "value"),
-    )
-    def display_output(value, select_id=select_id):
-        if value is None or value == "":
-            return f"No option selected in {select_id}"
-        return f"{select_id} selected: {value}"
+    if select_id == "select-3":
+        @callback(
+            Output(f"output-div-{select_id}", "children"),
+            Output(f"output-div-{select_id}", "style"),
+            Input(select_id, "value")
+        )
+        def display_output(value, select_id=select_id):
+            if not value:
+                return f"No option selected in {select_id}", {}
+            elif value != "option2":
+                return "Invalid selection. Please select Option 2.", {"color": "red"}            
+            else:
+                return "Valid selection!", {"color": "green"}
+    else:
+        @callback(
+            Output(f"output-div-{select_id}", "children"),
+            Input(select_id, "value"),
+        )
+        def display_output(value, select_id=select_id):
+            if value is None or value == "":
+                return f"No option selected in {select_id}"
+            return f"{select_id} selected: {value}"
