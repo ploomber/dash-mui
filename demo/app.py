@@ -20,6 +20,7 @@ sidebar = html.Div(
         "width": "26    0px", 
         "backgroundColor": "#1976D2", 
         "padding": "20px", 
+        "paddingBottom": "70px", 
         "position": "fixed", 
         "top": "0", 
         "bottom": "0", 

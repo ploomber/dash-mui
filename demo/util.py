@@ -8,7 +8,22 @@ import dash_react_syntax_highlighter
 dash._dash_renderer._set_react_version("18.2.0")
 
 def generate_callback(id, event_name, event_value, event_state):
-    if event_name == "Switch":
+    if id == "select-3":
+        return f"""
+@callback(
+    Output(f"output-div-{id}", "children"),
+    Output(f"output-div-{id}", "style"),
+    Input("{id}", "{event_value}")
+)
+def display_output({event_value}, id="{id}"):
+    if not {event_value}:
+        return f"No option selected in {id}", {{"color": "black"}}
+    elif {event_value} != "option2":
+        return "Invalid selection. Please select Option 2.", {{"color": "red"}}
+    else:
+        return "Valid selection!", {{"color": "green"}}
+"""
+    elif event_name == "Switch":
         return f"""
 @callback(
     Output(f"output-div-{id}", "children"),

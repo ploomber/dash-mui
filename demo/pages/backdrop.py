@@ -8,6 +8,12 @@ dash.register_page(__name__)
 
 layout = html.Div(
     [
+        html.P(
+            "A backdrop is a semi-transparent overlay that appears on the screen to bring attention "
+            "to certain elements or indicate loading. Click the button below to toggle the backdrop.",
+            style={"margin-bottom": "10px", "font-size": "24px", "color": "#555"},
+        ),
+
         mui.Button(id="backdrop-toggle-btn", children="Toggle Backdrop", variant="contained"),
         create_component_item(
             "Basic Backdrop",
