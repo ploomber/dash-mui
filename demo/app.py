@@ -17,34 +17,63 @@ menu_items = [
 
 sidebar = html.Div(
     style={
-        "width": "26    0px", 
-        "backgroundColor": "#1976D2", 
-        "padding": "20px", 
-        "paddingBottom": "70px", 
-        "position": "fixed", 
-        "top": "0", 
-        "bottom": "0", 
-        "left": "0", 
-        "overflow": "auto"  
+        "width": "26    0px",
+        "backgroundColor": "#1976D2",
+        "padding": "20px",
+        "paddingBottom": "70px",
+        "position": "fixed",
+        "top": "0",
+        "bottom": "0",
+        "left": "0",
+        "overflow": "auto",
     },
     children=[
-        html.H2("Dash Material UI", style={"text-align": "center", "padding": "10px", "color": "white", "font-family": "Roboto, Helvetica, Arial, sans-serif"}),
+        html.H2(
+            "Dash Material UI",
+            style={
+                "text-align": "center",
+                "padding": "10px",
+                "color": "white",
+                "font-family": "Roboto, Helvetica, Arial, sans-serif",
+            },
+        ),
         html.Ul(
-            style={"list-style-type": "none", "padding-left": "0", "font-family": "Roboto, Helvetica, Arial, sans-serif"},
+            style={
+                "list-style-type": "none",
+                "padding-left": "0",
+                "font-family": "Roboto, Helvetica, Arial, sans-serif",
+            },
             children=[
                 html.Li(
-                    html.A("Home", href="/", style={"padding": "10px 0", "text-decoration": "none",  "color": "white",  "font-size": "18px"}),
-                    style={"padding": "10px 0", "margin-bottom": "10px"}
+                    html.A(
+                        "Home",
+                        href="/",
+                        style={
+                            "padding": "10px 0",
+                            "text-decoration": "none",
+                            "color": "white",
+                            "font-size": "18px",
+                        },
+                    ),
+                    style={"padding": "10px 0", "margin-bottom": "10px"},
                 ),
-                
                 *[
                     html.Li(
-                        html.A(item["name"], href=item["path"], style={"padding": "10px 0", "text-decoration": "none",  "color": "white",  "font-size": "18px"}),
-                        style={"padding": "10px 0", "margin-bottom": "10px"}
+                        html.A(
+                            item["name"],
+                            href=item["path"],
+                            style={
+                                "padding": "10px 0",
+                                "text-decoration": "none",
+                                "color": "white",
+                                "font-size": "18px",
+                            },
+                        ),
+                        style={"padding": "10px 0", "margin-bottom": "10px"},
                     )
                     for item in menu_items
-                ]
-            ]
+                ],
+            ],
         ),
     ],
 )
@@ -64,7 +93,7 @@ dash.register_page(
                             "Add fruit observations and view them in a table and histogram."
                         ),
                     ],
-                    size=12
+                    size=12,
                 ),
                 mui.Item(
                     children=[
@@ -104,7 +133,7 @@ dash.register_page(
                         ),
                         html.Div(id="form-output", style={"marginTop": "10px"}),
                     ],
-                    size=4
+                    size=4,
                 ),
                 mui.Item(
                     children=[
@@ -116,16 +145,16 @@ dash.register_page(
                             stickyHeader=True,
                         ),
                     ],
-                    size=8
+                    size=8,
                 ),
                 mui.Item(
                     children=[
                         html.H2("Fruit Histogram"),
                         dcc.Graph(id="fruit-histogram"),
                     ],
-                    size=12
+                    size=12,
                 ),
-            ]
+            ],
         )
     ),
 )
@@ -195,7 +224,6 @@ def update_observations(n_clicks, form_values, table_data):
 app.layout = html.Div(
     children=[
         sidebar,
-        
         html.Div(
             children=[
                 dash.page_container,
@@ -236,4 +264,9 @@ app.layout = html.Div(
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    import argparse
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--debug", action="store_true", help="Enable debug mode")
+    args = parser.parse_args()
+    app.run(debug=args.debug)

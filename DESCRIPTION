@@ -1,6 +1,6 @@
 Package: dashMaterialUi
 Title: Material UI for Dash
-Version: 0.0.2
+Version: 0.0.3
 Description: Material UI for Dash
 Depends: R (>= 3.0.2)
 Imports: 
