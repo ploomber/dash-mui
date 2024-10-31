@@ -7,6 +7,7 @@ import dash_react_syntax_highlighter
 
 dash._dash_renderer._set_react_version("18.2.0")
 
+
 def generate_callback(id, event_name, event_value, event_state):
     if id == "select-3":
         return f"""
@@ -57,6 +58,7 @@ def display_output({event_value}, id="{id}"):
     return f"{event_name} value is: {{{event_value}}}"
 """
 
+
 def create_component_item(
     title,
     component_type,
@@ -65,7 +67,7 @@ def create_component_item(
     event_value=None,
     size=4,
     output_div=True,
-    event_state=None
+    event_state=None,
 ):
     component = component_type(**component_props)
 
@@ -75,10 +77,19 @@ def create_component_item(
     component_code += ",\n".join(
         f"        {k}={repr(v)}" for k, v in component_props.items()
     )
-    component_code += f"\n    ),\n    html.Div(id='output-div-{component_props['id']}')\n])"
+    component_code += (
+        f"\n    ),\n    html.Div(id='output-div-{component_props['id']}')\n])"
+    )
 
     if event_name:
-        component_code += f"\n\n{generate_callback(component_props["id"], event_name, event_value, event_state)}"
+        callback_code = generate_callback(
+            component_props["id"],
+            event_name,
+            event_value,
+            event_state,
+        )
+        component_code += f"\n\n{callback_code}"
+
     formatted_code = black.format_str(component_code, mode=black.Mode(line_length=88))
 
     children = [
