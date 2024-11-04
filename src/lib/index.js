@@ -19,8 +19,9 @@ import Alert from './components/Alert.react';
 import Pagination from './components/Pagination.react';
 import Menu from './components/Menu.react';
 import Paper from './components/Paper.react';
+import Popover from './components/Popover.react';
+import CustomSpeedDial from './components/CustomSpeedDial.react';
 export {
-    Table,
     Backdrop,
     CheckBoxTable,
     Card,
@@ -40,4 +41,7 @@ export {
     Pagination,
     Menu,
     Paper,
+    Table,
+    Popover,
+    CustomSpeedDial,
 };

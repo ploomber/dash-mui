@@ -6,7 +6,6 @@ from util import create_component_item
 
 dash.register_page(__name__)
 
-# Paper component layout with different elevation examples
 layout = html.Div(
     [
         mui.Grid(
