@@ -9,6 +9,20 @@ dash._dash_renderer._set_react_version("18.2.0")
 
 
 def generate_callback(id, event_name, event_value, event_state):
+    if event_name == "Speed Dial":
+        return f"""
+@callback(
+    Output(f"output-div-{id}", "children"),
+    Input("{id}", "{event_value}")
+)
+def display_clicked_action(action_id):
+    action_map = {{
+        "save-action": "Save action clicked",
+        "print-action": "Print action clicked",
+        "share-action": "Share action clicked",
+    }}
+    return action_map.get(action_id, "No action selected")
+"""
     if id == "select-3":
         return f"""
 @callback(
