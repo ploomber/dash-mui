@@ -6,6 +6,8 @@ from util import create_component_item
 dash.register_page(__name__)
 
 speed_dial_actions = [
+    # Material UI icons can be used by their names
+    # Browse available icons at: https://mui.com/material-ui/icons
     {"id": "save-action", "icon": "Save", "tooltip": "Save"},
     {"id": "print-action", "icon": "Print", "tooltip": "Print"},
     {"id": "share-action", "icon": "Share", "tooltip": "Share"},
